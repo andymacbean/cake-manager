@@ -10,11 +10,11 @@ public class HibernateUtil {
     private HibernateUtil() {
     }
 
-    private static SessionFactory sessionFactory = buildSessionFactory();
+    private static SessionFactory sessionFactory = getSessionFactory();
 
-    private static SessionFactory buildSessionFactory() {
+    public static SessionFactory getSessionFactory() {
         try {
-            if (sessionFactory == null) {
+            if (sessionFactory == null || sessionFactory.isClosed()) {
                 Configuration configuration = new Configuration().configure(HibernateUtil.class.getResource("/hibernate.cfg.xml"));
                 StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
                 serviceRegistryBuilder.applySettings(configuration.getProperties());
@@ -28,12 +28,8 @@ public class HibernateUtil {
         }
     }
 
-    public static SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
     public static void shutdown() {
-        getSessionFactory().close();
+        sessionFactory.close();
     }
 
 }

@@ -1,0 +1,51 @@
+#CHANGELIST#
+
+#NOTES#
+Decided NOT to add any new dependencies/libraries and purely just get working and tidy up using existing dependencies.  The reason for this is
+that I felt that if i was ablke to use new dependencies/libraries it would have been an almost re-write and not my interpretation of the task.
+
+If I had added new dependencies I would have considered the following:
+- log4j or similar to replace the System.out/err calls
+- Spring for a number of reasons inncluding dependency injection, util to make http calls and a controller impl with rest based unit tests
+- Mockito or EasyMock to add more complete unit testing
+
+/pom.xml
+- added the databind jackson dependency (technically not new as Jackson already in use)
+- fixed the version of the maven jetty plugin
+
+/src/main/webapp/WEB_INF/web.xml
+- corrected the version mismatch in the web.xml file
+- updated the display name
+
+/src/main/java/com.waracle.cakemgr
+- renamed to be 3 separate, nested directories i.e. com/waracle/cakemgr/
+
+/src/main/javacom/waracle/cakemgr/CakeEntity.java
+- removed deprecated org.hibernate.annotations.Entity annotation and replaced with @DynamicUpdate
+- changed table name from Employees to Cakes (ps. I have nothing against employees :))
+- updated other table column mappings in annotations to reflect class member names
+- removed setting unique to false as that is the default
+- updated the serial version UID to reflect new version of class
+
+/src/main/java/com/waracle/cakemgr/CakeServlet.java
+- added the databind jackson dep and refactored the doGet method to use that for JSON output
+
+/src/main/java/com/waracle/cakemgr/CakeService.java
+- added this class to contain the cake service implementation
+
+/src/main/java/com/waracle/cakemgr/CakeDao.java
+- added this class to hold the data access code for the CakeEntity
+
+/src/main/java/com/waracle/cakemgr/SimpleHttpClient.java
+- added this class to provide simple http functionality for the intitial DB load from remote url
+
+/src/main/java/com/waracle/cakemgr/HibernateUtil.java
+- made final and added private constructor prevent instantiation
+- changed from catching Throwable to Exception (still nasty but better for now)
+- refactored to allow the database to be shutdown and recreated
+
+/src/test/java/com/waracle/cakemgr/CakeServiceTest.java
+- added this class to test the cake service
+
+/src/test/java/com/waracle/cakemgr/CakeDaoTest.java
+- added this class to test the cake dao

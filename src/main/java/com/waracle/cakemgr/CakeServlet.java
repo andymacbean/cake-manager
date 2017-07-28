@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -25,7 +26,7 @@ public class CakeServlet extends HttpServlet {
 
     private void loadInitialCakes() throws ServletException {
         System.out.println("Cake initialisation started");
-        Set<CakeEntity> initialCakes = cakeService.getInitialCakes();
+        List<CakeEntity> initialCakes = new ArrayList(cakeService.getInitialCakes());
         cakeService.saveCakes(initialCakes);
         System.out.println("Cake initialisation complete");
     }

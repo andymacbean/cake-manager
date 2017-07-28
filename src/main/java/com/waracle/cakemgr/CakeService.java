@@ -39,7 +39,7 @@ public class CakeService {
         }
     }
 
-    public void saveCakes(Set<CakeEntity> cakeList) {
+    public void saveCakes(List<CakeEntity> cakeList) {
         if (cakeList != null && cakeList.size() > 0) {
             cakeList.forEach(cake -> cakeDao.addCake(cake));
         }
