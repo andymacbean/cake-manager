@@ -7,6 +7,9 @@ import org.hibernate.service.ServiceRegistry;
 
 public class HibernateUtil {
 
+    private HibernateUtil() {
+    }
+
     private static SessionFactory sessionFactory = buildSessionFactory();
 
     private static SessionFactory buildSessionFactory() {
@@ -19,7 +22,7 @@ public class HibernateUtil {
                 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
             }
             return sessionFactory;
-        } catch (Throwable ex) {
+        } catch (Exception ex) {
             System.err.println("Initial SessionFactory creation failed." + ex);
             throw new ExceptionInInitializerError(ex);
         }
