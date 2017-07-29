@@ -33,7 +33,8 @@ public class CakeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (CakeConstants.JSON_CONTENT_TYPE.equals(request.getContentType())) {
+        if (CakeConstants.JSON_CONTENT_TYPE.equals(request.getContentType()) ||
+                request.getHeader("Accept").contains(CakeConstants.JSON_CONTENT_TYPE)) {
             new ObjectMapper().writeValue(response.getOutputStream(), cakeService.getAllCakes());
         } else {
             RequestDispatcher view = request.getRequestDispatcher(CakeConstants.HTML_REDIRECT_SUFFIX);
