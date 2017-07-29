@@ -4,13 +4,13 @@
 Decided NOT to add any new dependencies/libraries and purely just get working and tidy up using existing dependencies.  The reason for this is
 that I felt that if i was ablke to use new dependencies/libraries it would have been an almost re-write and not my interpretation of the task.
 
-If I had added new dependencies I would have considered the following:
-- log4j or similar to replace the System.out/err calls
-- Spring for a number of reasons inncluding dependency injection, util to make http calls and a controller impl with rest based unit tests
-- Mockito or EasyMock to add more complete unit testing
+If I had added new dependencies and use other technologies I would have considered the following:
+- Log4j (or similar) to replace the System.out/err calls
+- Spring for a number of reasons but primarily dependency injection and improved testability
+- Mockito (or EasyMock) to add more complete unit testing
 
 /pom.xml
-- added the databind jackson dependency (technically not new as Jackson already in use)
+- added the databind jackson dependency (technically not new dep as Jackson already in use)
 - fixed the version of the maven jetty plugin
 
 /src/main/webapp/WEB_INF/web.xml
@@ -28,13 +28,15 @@ If I had added new dependencies I would have considered the following:
 - updated the serial version UID to reflect new version of class
 
 /src/main/java/com/waracle/cakemgr/CakeServlet.java
-- added the databind jackson dep and refactored the doGet method to use that for JSON output
+- simplified this class do focus only on the initialisation and the handling the http get/put calls
+- changed to handle both of the reqired url patterns
+- delegates to the new CakeService for everything else
 
 /src/main/java/com/waracle/cakemgr/CakeService.java
-- added this class to contain the cake service implementation
+- added this class to contain the cake service layer implementation
 
 /src/main/java/com/waracle/cakemgr/CakeDao.java
-- added this class to hold the data access code for the CakeEntity
+- added this class to hold the data access layer for the CakeEntity
 
 /src/main/java/com/waracle/cakemgr/SimpleHttpClient.java
 - added this class to provide simple http functionality for the intitial DB load from remote url
@@ -43,6 +45,15 @@ If I had added new dependencies I would have considered the following:
 - made final and added private constructor prevent instantiation
 - changed from catching Throwable to Exception (still nasty but better for now)
 - refactored to allow the database to be shutdown and recreated
+
+/src/main/webapp/cakes.html
+- new html file to render the cake info un a user readable way
+
+/src/main/webapp/js/cakes.js
+- new javascript file to handle the initial cake load via the GET (JSON) api AND the form submisson to the PUT endpoint
+
+/src/main/webapp/css/cakes.css
+- simple css to format the html page slightly
 
 /src/test/java/com/waracle/cakemgr/CakeServiceTest.java
 - added this class to test the cake service

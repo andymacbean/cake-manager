@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @WebServlet(urlPatterns = {CakeConstants.HOME_URL_PATTERN, CakeConstants.CAKES_URL_PATTERN})
 public class CakeServlet extends HttpServlet {
