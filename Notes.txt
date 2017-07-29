@@ -2,7 +2,7 @@
 
 #NOTES#
 Decided NOT to add any new dependencies/libraries and purely just get working and tidy up using existing dependencies.  The reason for this is
-that I felt that if i was ablke to use new dependencies/libraries it would have been an almost re-write and not my interpretation of the task.
+that I felt that if i was able to use new dependencies/libraries it would have been an almost re-write and that wasn't my interpretation of the task.
 
 If I had added new dependencies and use other technologies I would have considered the following:
 - Log4j (or similar) to replace the System.out/err calls
@@ -33,13 +33,13 @@ If I had added new dependencies and use other technologies I would have consider
 - delegates to the new CakeService for everything else
 
 /src/main/java/com/waracle/cakemgr/CakeService.java
-- added this class to contain the cake service layer implementation
+- added to contain the cake service layer implementation
 
 /src/main/java/com/waracle/cakemgr/CakeDao.java
-- added this class to hold the data access layer for the CakeEntity
+- added to hold the data access layer for the CakeEntity
 
 /src/main/java/com/waracle/cakemgr/SimpleHttpClient.java
-- added this class to provide simple http functionality for the intitial DB load from remote url
+- added to provide simple http functionality for the intitial DB load from remote url
 
 /src/main/java/com/waracle/cakemgr/HibernateUtil.java
 - made final and added private constructor prevent instantiation
